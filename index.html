@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不止省钱！Z世代大学生的“平替消费”革命 | 数据新闻</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        /* 全局样式重置与基础设置 */
+        
+        .chart-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 30px;
+            height: 500px;
+        }
+        
+        .chart-wrap {
+            height: calc(100% - 40px);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .chart-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 30px;
+            height: 500px;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2d8cf0;
+        }
+        
+        .chart-wrap {
+            height: calc(100% - 40px);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft Yahei", Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        /* 容器样式 - 居中+留白 */
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        /* 头部样式 */
+        
+        .news-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        /* 主标题 */
+        
+        .main-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        /* 副标题/标签 */
+        
+        .news-tag {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #4299e1;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        /* 导语样式 */
+        
+        .lead {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.9;
+            text-indent: 2em;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f0f8fb;
+            border-left: 4px solid #4299e1;
+            border-radius: 4px;
+        }
+        /* 章节标题 */
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 40px 0 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        /* 章节标题下划线 */
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #4299e1;
+            border-radius: 2px;
+        }
+        /* 段落样式 */
+        
+        .paragraph {
+            margin-bottom: 20px;
+            text-indent: 2em;
+            color: #4a5568;
+        }
+        /* 数据高亮样式 */
+        
+        .data-highlight {
+            color: #e53e3e;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+        /* 数据卡片样式 - 突出核心数据 */
+        
+        .data-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+            justify-content: space-between;
+        }
+        
+        .card-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 25px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+        
+        .card-data {
+            font-size: 36px;
+            font-weight: 700;
+            color: #4299e1;
+            margin-bottom: 5px;
+        }
+        
+        .card-desc {
+            font-size: 14px;
+            color: #4a5568;
+        }
+        /* 分隔线 */
+        
+        .divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 40px 0;
+        }
+        /* 结语样式 */
+        
+        .conclusion {
+            font-size: 17px;
+            color: #2d3748;
+            line-height: 1.9;
+            padding: 25px;
+            background-color: #f5fafe;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        /* 响应式适配 */
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 26px;
+            }
+            .lead {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 20px;
+            }
+            .card-data {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 新闻头部 -->
+        <header class="news-header">
+            <span class="news-tag">数据新闻 | 大学生消费洞察</span>
+            <h1 class="main-title">不止省钱！Z世代大学生的“平替消费”革命</h1>
+        </header>
+
+        <!-- 核心数据卡片 -->
+        <div class="data-card">
+            <div class="card-item">
+                <div class="card-title">平替消费参与率</div>
+                <div class="card-data">59%</div>
+                <div class="card-desc">有过平替产品购买经历</div>
+            </div>
+            <div class="card-item">
+                <div class="card-title">核心消费群体</div>
+                <div class="card-data">67%</div>
+                <div class="card-desc">女性占比</div>
+            </div>
+            <div class="card-item">
+                <div class="card-title">首要购买动因</div>
+                <div class="card-data">74.58%</div>
+                <div class="card-desc">价格更实惠</div>
+            </div>
+            <div class="card-item">
+                <div class="card-title">核心信息渠道</div>
+                <div class="card-data">79.66%</div>
+                <div class="card-desc">社交媒体平台</div>
+            </div>
+        </div>
+
+        <!-- 导语 -->
+        <p class="lead">
+         花小钱办大事”不再是妥协，而是Z世代的消费智慧勋章。某高校大四学生的化妆台上，39元的国货唇釉与大牌同成分，299元的蓝牙耳机音质对标千元原装款；二手教材比新书省一半，300元内的3C配件满足日常刚需。2025年高校专项调查显示，<span class="data-highlight">59%</span>大学生有平替消费经历，而《2024年中国消费趋势观察报告》更揭示，<span class="data-highlight">72.3%</span>的00后在功能品质相近时，会主动选择平替。随着麦可思数据披露2025年大学生月均生活费1744元，一场剥离品牌溢价、回归产品本质的“平替革命”，正在大学校园全面上演。
+
+        </p>
+
+        <!-- 第一章节：核心数据画像 -->
+        <h2 class="section-title">67%女性成消费主力，大四学生占比超六成</h2>
+        <p class="paragraph">
+            性别与年级的分布数据勾勒出平替消费的核心人群画像。调查显示，参与平替消费的大学生中，女性占比达<span class="data-highlight">67%</span>，远超男性的<span class="data-highlight">33%</span>，成为这一消费模式的绝对主力——这与美妆护肤（<span class="data-highlight">62.71%</span>）、服饰鞋包（<span class="data-highlight">37.29%</span>）等女性偏好品类的高购买率形成呼应。
+        </p>
+
+        <body>
+            <!-- 1. 饼图：性别分布 -->
+            <div class="chart-container">
+                <div class="title">1. 性别分布（饼图）</div>
+                <div id="gender-pie" class="chart-wrap"></div>
+            </div>
+            <p class="paragraph">
+                年级维度上，大四学生以<span class="data-highlight">60%</span>的占比成为平替消费的核心群体，大一至大三学生合计占比仅<span class="data-highlight">26%</span>，研究生及以上群体占<span class="data-highlight">14%</span>。这一特征折射出消费心态的阶段性变化：临近毕业的大四学生更注重消费的实用性与成本控制，而低年级学生仍处于消费探索期。
+            </p>
+            <!-- 2. 柱状图：年级分布 -->
+            <div class="chart-container">
+                <div class="title">2. 年级分布（柱状图）</div>
+                <div id="grade-bar" class="chart-wrap"></div>
+            </div>
+            <p class="paragraph">
+                从消费能力来看，大学生每月可支配生活费集中在1001-2000元区间（合计<span class="data-highlight">59%</span>），其中1001-1500元占比<span class="data-highlight">33%</span>，1501-2000元占比<span class="data-highlight">26%</span>，有限的预算成为平替消费的基础动因，但并非唯一动因。
+            </p>
+
+            <!-- 分隔线 -->
+            <div class="divider"></div>
+
+            <!-- 第二章节：消费行为 -->
+            <h2 class="section-title">每月一次成主流频率，单次消费聚焦百元区间</h2>
+            <p class="paragraph">
+              现在的年轻人要的不是“你告诉我什么好”，而是“我能证明什么好”。
+这场“平替”风潮，表面上是购物选择的变化，本质上是一场深刻的“消费主权”革命。年轻人收回了定义“好产品”的权利，他们用理性和判断力告诉世界：我们自信，不是因为我们买得起什么，而是因为我们懂得如何选择。对于品牌而言，唯有放下“溢价傲慢”，真诚地与这些聪明的年轻人站在一起，才能赢得未来。
+ 
+            </p>
+            <!-- 3. 横向柱状图：平替产品品类购买情况 -->
+            <div class="chart-container">
+                <div class="title">3. 平替产品品类购买情况（横向柱状图）</div>
+                <div id="category-bar-horizontal" class="chart-wrap"></div>
+            </div>
+
+            <p class="paragraph">
+                平替消费的“日常化”特征显著。数据显示，<span class="data-highlight">22.03%</span>的受访者每月购买一次平替产品，<span class="data-highlight">20.34%</span>每2-3周购买一次，两者合计超四成；而每周多次购买的比例达<span class="data-highlight">16.95%</span>，仅<span class="data-highlight">13.56%</span>的受访者半年及以上购买一次。
+                消费金额则呈现“小额高频”特征：50元以下（<span class="data-highlight">20.34%</span>）、51-100元（<span class="data-highlight">27.12%</span>）、101-200元（<span class="data-highlight">23.73%</span>）三个区间合计占比超70%，300元以上的大额平替消费仅占<span class="data-highlight">6.77%</span>。这意味着Z世代大学生的平替消费，是基于“即时需求”的理性选择，而非盲目囤货。
+            </p>
+            <p class="paragraph">
+                品类选择上，美妆护肤以<span class="data-highlight">62.71%</span>的购买率稳居第一，数码配件（<span class="data-highlight">42.37%</span>）、学习用品（<span class="data-highlight">38.98%</span>）紧随其后，而电子产品仅占<span class="data-highlight">30.51%</span>——这一差异反映出大学生对“高客单价品类平替”的谨慎态度：低客单价、低试错成本的品类更易被接受，而电子产品等核心品类仍倾向于选择正品。
+            </p>
+            <!-- 4. 折线图：购买平替产品频率 -->
+            <div class="chart-container">
+                <div class="title">4. 平替产品购买频率（折线图）</div>
+                <div id="frequency-line" class="chart-wrap"></div>
+            </div>
+
+            <!-- 分隔线 -->
+            <div class="divider"></div>
+
+            <!-- 第三章节：消费逻辑革命 -->
+            <h2 class="section-title">74.58%看重价格，但64.41%更认性价比</h2>
+            <p class="paragraph">
+                “省钱”是平替消费的起点，但绝非终点。调查显示，<span class="data-highlight">74.58%</span>的受访者将“价格更实惠”列为购买原因，而“产品性价比高”以<span class="data-highlight">64.41%</span>的占比成为第二大动因，“满足基本使用需求”占<span class="data-highlight">55.93%</span>，三者共同构成核心驱动逻辑。
+            </p>
+            <p class="paragraph">
+                值得注意的是，“追求个性化，不盲目跟风”以<span class="data-highlight">33.9%</span>的占比进入核心动因列表，这打破了“平替=廉价模仿”的刻板印象——Z世代大学生选择平替产品，既是对高价品牌溢价的拒绝，也是对“适合自己”的个性化消费的追求。此外，<span class="data-highlight">23.73%</span>的受访者因“环保理念”选择平替，<span class="data-highlight">18.64%</span>为“尝试新品牌/产品”，折射出年轻群体消费观的多元化。
+            </p>
+            <!-- 5. 饼图：购买平替产品的主要原因 -->
+            <div class="chart-container">
+                <div class="title">5. 购买平替产品的主要原因（饼图）</div>
+                <div id="reason-pie" class="chart-wrap"></div>
+            </div>
+
+            <p class="paragraph">
+                在购买决策因素中，“价格优势”以7.2分的重要性评分位居第一，“产品质量”以6.37分紧随其后，而“外观设计”“品牌口碑”等非实用因素评分均低于5分。这印证了Z世代的消费理性：在平替选择中，“好用”比“好看”更重要，“性价比”比“品牌光环”更有吸引力。
+            </p>
+
+            <!-- 分隔线 -->
+            <div class="divider"></div>
+
+            <!-- 第四章节：信息渠道 -->
+            <h2 class="section-title">社交媒体成核心入口，社交推荐权重走低</h2>
+            <p class="paragraph">
+                平替产品的信息获取渠道，凸显了Z世代的媒介使用特征。<span class="data-highlight">79.66%</span>的受访者通过社交媒体（小红书、微博等）获取信息，<span class="data-highlight">71.19%</span>依赖电商平台推荐，两者合计成为绝对主流；而“朋友/同学推荐”仅占<span class="data-highlight">55.93%</span>，“KOL/KOC推荐”更是低至<span class="data-highlight">16.95%</span>。
+            </p>
+            <!-- 6. 柱状图：获取平替产品信息的渠道 -->
+            <div class="chart-container">
+                <div class="title">6. 获取平替产品信息的渠道（柱状图）</div>
+                <div id="channel-bar" class="chart-wrap"></div>
+            </div>
+
+            <p class="paragraph">
+                这一数据反映出两个趋势：一是算法推荐正在取代传统社交推荐，成为平替消费的核心信息源；二是Z世代大学生对商业推荐（KOL）保持警惕，更信任平台内的用户真实分享——这也解释了为何“用户评价”以4.44分的重要性评分，成为购买决策的关键参考。
+            </p>
+
+            <!-- 结语 -->
+            <div class="conclusion">
+                <strong>平替消费的兴起，本质上是Z世代消费主权的觉醒——从“被品牌定义”转向“自主定义价值”，从“为面子买单”转变为“为实用付费”。当59%的大学生以理性选择证明“省钱不等于降质”，当国货的崛起为平替消费筑牢品质根基，这场消费领域的变革正在重塑校园生态。随着监管政策的不断完善与平台治理力度的加强，平替消费将朝着更健康的方向发展，而年轻人在这一过程中培养的理性决策能力，终将成为比省钱本身更为宝贵的人生财富。
+
+            </div>
+    </div>
+    <blockquote class="">
+        <div>数据来源链接：</div>
+        <div>问卷星-大学生平替消费习惯调查问卷：<a target="_blank" rel="noopener noreferrer nofollow" href="https://www.wjx.cn/wxloj/datafullscreen.aspx?activity=343532487" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+                    https://www.wjx.cn/wxloj/datafullscreen.aspx?activity=343532487
+                </a></div>
+<div> 麦可思-2025年在校大学生消费行为研究：<a target="_blank" rel="noopener noreferrer nofollow" href="http://m.toutiao.com/group/7566514575005205002/?upstream_biz=doubao" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+http://m.toutiao.com/group/7566514575005205002/?upstream_biz=doubao</a></div>
+
+
+<div> 京东《京东3C数码校园人群报告》：<a target="_blank" rel="noopener noreferrer nofollow" href="http://finance.people.com.cn/n1/2024/1227/c1004-40390527.html" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+http://finance.people.com.cn/n1/2024/1227/c1004-40390527.html</a></div>
+
+
+<div> 《2024年中国消费趋势观察报告》（36氪）：<a target="_blank" rel="noopener noreferrer nofollow" href="https://m.36kr.com/p/3442167232009603" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+https://m.36kr.com/p/3442167232009603</a></div>
+
+
+<div>  2025年美妆个护行业消费趋势报告：<a target="_blank" rel="noopener noreferrer nofollow" href="https://max.book118.com/html/2025/1215/8050053122010022.shtm" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+https://max.book118.com/html/2025/1215/8050053122010022.shtm</a></div>
+
+<div> 工信部“明白办、放心用”专项行动：<a target="_blank" rel="noopener noreferrer nofollow" href="http://m.toutiao.com/group/7499154992504160804/?upstream_biz=doubao" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+http://m.toutiao.com/group/7499154992504160804/?upstream_biz=doubao</a></div>
+
+<div>   大学生消费新趋势：理性与潮流共舞的3C产品市场（搜狐网）：<a target="_blank" rel="noopener noreferrer nofollow" href="https://m.sohu.com/a/842190155_121885028/" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+https://m.sohu.com/a/842190155_121885028/</a></div>
+
+<div>  麦可思-2025年大学生生活费研究（网易新闻）：<a target="_blank" rel="noopener noreferrer nofollow" href="https://c.m.163.com/news/a/KDAHNS0O05218435.html" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+https://c.m.163.com/news/a/KDAHNS0O05218435.html</a></div>
+
+<div>    α世代与Z世代消费市场变革（网易新闻）：<a target="_blank" rel="noopener noreferrer nofollow" href="https://c.m.163.com/news/a/K53KC93Q05389O2X.html" linkid="9a2a53d0-f6c9-407b-b6ad-a68fc91aec32">
+https://c.m.163.com/news/a/K53KC93Q05389O2X.html</a></div>
+    </blockquote>
+    <script>
+        // 初始化ECharts实例的通用函数
+        function initChart(id, option) {
+            const chartDom = document.getElementById(id);
+            const myChart = echarts.init(chartDom);
+            myChart.setOption(option);
+            // 自适应窗口大小
+            window.addEventListener('resize', () => {
+                myChart.resize();
+            });
+        }
+
+        // 1. 性别分布 - 饼图
+        initChart('gender-pie', {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c}% ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                textStyle: {
+                    fontSize: 14
+                }
+            },
+            series: [{
+                name: '性别',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '{c}%'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 20,
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [{
+                    value: 33,
+                    name: '男'
+                }, {
+                    value: 67,
+                    name: '女'
+                }],
+                color: ['#4e79a7', '#f28e2c']
+            }]
+        });
+
+        // 2. 年级分布 - 柱状图
+        initChart('grade-bar', {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                data: ['大一', '大二', '大三', '大四', '研究生及以上'],
+                axisLabel: {
+                    fontSize: 12
+                }
+            }],
+            yAxis: [{
+                type: 'value',
+                name: '占比 (%)',
+                max: 100,
+                axisLabel: {
+                    formatter: '{value}%'
+                }
+            }],
+            series: [{
+                name: '年级占比',
+                type: 'bar',
+                barWidth: '60%',
+                data: [8, 2, 16, 60, 14],
+                itemStyle: {
+                    color: '#2d8cf0'
+                },
+                label: {
+                    show: true,
+                    position: 'top',
+                    formatter: '{c}%'
+                }
+            }]
+        });
+
+        // 3. 平替产品品类 - 横向柱状图
+        initChart('category-bar-horizontal', {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '10%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'value',
+                name: '购买占比 (%)',
+                max: 100,
+                axisLabel: {
+                    formatter: '{value}%'
+                }
+            }],
+            yAxis: [{
+                type: 'category',
+                data: [
+                    '美妆护肤', '数码配件', '学习用品', '服饰鞋包',
+                    '餐饮食品', '日用百货', '运动户外', '图书文具',
+                    '电子产品', '其他'
+                ],
+                axisLabel: {
+                    fontSize: 11
+                }
+            }],
+            series: [{
+                name: '购买占比',
+                type: 'bar',
+                data: [62.71, 42.37, 38.98, 37.29, 28.81, 35.59, 22.03, 22.03, 30.51, 6.78],
+                itemStyle: {
+                    color: function(params) {
+                        // 渐变颜色
+                        const colorList = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#859900'];
+                        return colorList[params.dataIndex];
+                    }
+                },
+                label: {
+                    show: true,
+                    position: 'right',
+                    formatter: '{c}%'
+                }
+            }]
+        });
+
+        // 4. 购买频率 - 折线图
+        initChart('frequency-line', {
+            tooltip: {
+                trigger: 'axis',
+                formatter: '{b}: {c}%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                data: ['每周多次', '每周一次', '每2-3周一次', '每月一次', '每2-3个月一次', '半年一次及以下'],
+                axisLabel: {
+                    fontSize: 11,
+                    rotate: 15
+                }
+            }],
+            yAxis: [{
+                type: 'value',
+                name: '占比 (%)',
+                max: 30,
+                axisLabel: {
+                    formatter: '{value}%'
+                }
+            }],
+            series: [{
+                name: '购买频率占比',
+                type: 'line',
+                smooth: true, // 平滑折线
+                data: [16.95, 10.17, 20.34, 22.03, 16.95, 13.56],
+                itemStyle: {
+                    color: '#e83e8c'
+                },
+                lineStyle: {
+                    width: 3
+                },
+                symbol: 'circle', // 圆点标记
+                symbolSize: 8,
+                label: {
+                    show: true,
+                    position: 'top',
+                    formatter: '{c}%'
+                },
+                areaStyle: { // 面积填充
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(232, 62, 140, 0.3)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(232, 62, 140, 0.05)'
+                    }])
+                }
+            }]
+        });
+
+        // 5. 购买原因 - 饼图
+        initChart('reason-pie', {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c}%'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: '0%',
+                textStyle: {
+                    fontSize: 11
+                }
+            },
+            series: [{
+                name: '购买原因',
+                type: 'pie',
+                radius: ['30%', '70%'],
+                center: ['50%', '40%'],
+                data: [{
+                    value: 74.58,
+                    name: '价格更实惠'
+                }, {
+                    value: 64.41,
+                    name: '产品性价比高'
+                }, {
+                    value: 55.93,
+                    name: '满足基本使用需求'
+                }, {
+                    value: 33.9,
+                    name: '追求个性化'
+                }, {
+                    value: 23.73,
+                    name: '环保理念'
+                }, {
+                    value: 18.64,
+                    name: '尝试新品牌/产品'
+                }, {
+                    value: 16.95,
+                    name: '社交分享需求'
+                }, {
+                    value: 6.78,
+                    name: '其他'
+                }],
+                label: {
+                    show: true,
+                    formatter: '{b}: {c}%'
+                }
+            }]
+        });
+
+        // 6. 信息渠道 - 柱状图
+        initChart('channel-bar', {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                data: [
+                    '社交媒体', '电商推荐', '朋友推荐', '校园社群',
+                    '线下体验', 'KOL推荐', '品牌官方', '其他'
+                ],
+                axisLabel: {
+                    fontSize: 11,
+                    rotate: 20
+                }
+            }],
+            yAxis: [{
+                type: 'value',
+                name: '占比 (%)',
+                max: 100,
+                axisLabel: {
+                    formatter: '{value}%'
+                }
+            }],
+            series: [{
+                name: '渠道占比',
+                type: 'bar',
+                data: [79.66, 71.19, 55.93, 18.64, 22.03, 16.95, 16.95, 3.39],
+                itemStyle: {
+                    color: '#36cbcb'
+                },
+                label: {
+                    show: true,
+                    position: 'top',
+                    formatter: '{c}%'
+                }
+            }]
+        });
+    </script>
+    </body>
+
+</html>
